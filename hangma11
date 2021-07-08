@@ -1,0 +1,36 @@
+t = File.read('dictionary.txt')
+words = t.split
+
+randomword = words[rand(0..words.size)].downcase
+randomwordarr = randomword.chars
+print randomword
+puts
+
+blanks = randomword.chars
+randomword.chars.each_with_index do |c,i|
+	blanks[i] = "_"
+end
+
+$count = 0;
+
+while blanks.include? "_"
+	
+	puts
+	print blanks
+	puts
+	print "type your guess: (attempts:" + $count.to_s + ")"
+	input = gets.chomp
+	$count = $count + 1
+	
+
+	while randomwordarr.include? input
+		blanks[randomwordarr.index(input)] = input
+		randomwordarr[randomwordarr.index(input)] = " "
+	end
+
+	
+end
+
+print "congrats! you guessed the word"
+print " it took you " + ($count - 1).to_s + " tries"
+
